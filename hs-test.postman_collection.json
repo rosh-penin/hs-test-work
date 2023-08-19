@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "01ec0664-e97a-43ba-9e17-51311172702d",
+		"name": "hs-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29218335"
+	},
+	"item": [
+		{
+			"name": "http://localhost/api/auth/number/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone_number\": \"87777777\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/auth/number/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"auth",
+						"number",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/api/auth/register/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone_number\": \"89999999999\",\r\n    \"confirmation_code\": \"2d1-\",\r\n    \"referal_code\": \"c0-cf2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/auth/register/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register",
+						""
+					]
+				},
+				"description": "New user with referal"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/api/users/me/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token ceb039cc55f69783da74c1816ce6700556cf6ecb",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/api/users/me/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"users",
+						"me",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/api/users/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token ceb039cc55f69783da74c1816ce6700556cf6ecb",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "List with invited users"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/api/users/866666666/",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token cfcedde6b9bb15b391af3f4388e96afbbe9f40dd",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"referal_code\": \"c0-cf2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/users/866666666/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"users",
+						"866666666",
+						""
+					]
+				},
+				"description": "Add referal to existing user"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,51 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:13.4
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    env_file:
+      - ./example.env
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${DB_NAME}'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  redis:
+    image: redis:latest
+    restart: always
+
+  backend:
+    build:
+      context: ./testapp/
+    restart: always
+    volumes:
+      - static_value:/app/static/
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      migrations:
+        condition: service_completed_successfully
+    env_file:
+      - ./example.env
+    ports:
+      - 80:8000
+
+  migrations:
+    build:
+      context: ./testapp/
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --no-input"
+    volumes:
+      - static_value:/app/static/
+    env_file:
+      - ./example.env
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  static_value:
+  postgres:
